@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Usage:
 # scripts/download_ensembl.sh monodelphis_domestica ASM229v1 ref/ASM229v1
