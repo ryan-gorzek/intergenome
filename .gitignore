@@ -2,6 +2,9 @@
 *.gz
 *.fastq
 *.bam
+*.fa
+*.fasta
+*.gtf
 *~
 *.bak
 *.swp
