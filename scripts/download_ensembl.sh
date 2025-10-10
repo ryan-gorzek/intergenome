@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
 # Usage:
-# scripts/download_ensembl.sh /u/scratch/r/rgorzek/intergenome ref monodelphis_domestica ASM229v1
-# scripts/download_ensembl.sh /u/scratch/r/rgorzek/intergenome ref mus_musculus GRCm39
+#   download_ensembl.sh <PROJDIR> <REFDIR> <SPECIES> <BUILD>
+# Example:
+#   download_ensembl.sh \
+#     "/u/scratch/r/rgorzek/intergenome" \
+#     "ref" \
+#     "monodelphis_domestica" \
+#     "ASM229v1"
 
 PROJDIR="${1}"
 REFDIR="${2:-ref}"

@@ -2,7 +2,14 @@
 set -euo pipefail
 
 # Usage:
-# scripts/download_fastq.sh https://data.nemoarchive.org/biccn/grant/u01_lein/lein/transcriptome/sncell/10x_v3/opossum/raw/NW_TX0090-11_S01_L003-001.fastq.tar /u/scratch/r/rgorzek/intergenome data/fastq U01_Lein/Opossum NW_TX0090-11_S01_L003-001.fastq.tar
+#   download_fastq.sh <URL> <PROJDIR> <FASTQDIR> <FOLDER> <FILE>
+# Example:
+#   download_fastq.sh \
+#     "https://data.nemoarchive.org/.../NW_TX0090-11_S01_L003-001.fastq.tar" \
+#     "/u/scratch/r/rgorzek/intergenome" \
+#     "data/fastq" \
+#     "U01_Lein/Opossum" \
+#     "NW_TX0090-11_S01_L003-001.fastq.tar"
 
 URL="${1}"
 PROJDIR="${2}"
