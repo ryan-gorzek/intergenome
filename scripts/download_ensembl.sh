@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 # Usage:
-# scripts/download_ensembl.sh monodelphis_domestica ASM229v1 ref/ASM229v1
-# scripts/download_ensembl.sh mus_musculus GRCm39 ref/GRCm39
+# scripts/download_ensembl.sh /u/scratch/r/rgorzek/intergenome ref monodelphis_domestica ASM229v1
+# scripts/download_ensembl.sh /u/scratch/r/rgorzek/intergenome ref mus_musculus GRCm39
 
-ROOTDIR="$SCRATCH/intergenome"
-SPECIES="${1:-mus_musculus}"
-BUILD="${2:-GRCm39}"
-OUTDIR="${3:-${ROOTDIR}/ref/${BUILD}}"
+PROJDIR="${1}"
+REFDIR="${2:-ref}"
+SPECIES="${3:-mus_musculus}"
+BUILD="${4:-GRCm39}"
+OUTDIR="${PROJDIR}/${REFDIR}/${BUILD}"
 
 mkdir -p "${OUTDIR}"
 cd "${OUTDIR}"
