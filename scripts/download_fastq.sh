@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Usage:
-# scripts/download_fastq.sh https://data.nemoarchive.org/biccn/grant/u01_lein/lein/transcriptome/sncell/10x_v3/opossum/raw/NW_TX0090-11_S01_L003-001.fastq.tar U01_Lein/Opossum NW_TX0090-11.fastq.tar
+# scripts/download_fastq.sh https://data.nemoarchive.org/biccn/grant/u01_lein/lein/transcriptome/sncell/10x_v3/opossum/raw/NW_TX0090-11_S01_L003-001.fastq.tar U01_Lein/Opossum NW_TX0090-11_S01_L003-001.fastq.tar
 
 DATADIR="$SCRATCH/intergenome/data/fastq"
 URL="${1}"
@@ -14,6 +14,9 @@ cd "${DATADIR}/${FOLDER}"
 
 wget "${URL}" -O "${FILE}"
 tar -xf "${FILE}"
+rm -rf "${FILE}"
+
+echo "Done. FASTQs in ${FOLDER}/${FILE%%.*}"
 
 # FOR GEO, NEEDS CORRECTION TO PULL FROM SRA:
 # Usage:
