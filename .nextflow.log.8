@@ -1,0 +1,96 @@
+Oct-21 13:29:57.923 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf
+Oct-21 13:29:58.934 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.04.8
+Oct-21 13:29:58.967 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/u/home/r/rgorzek/.nextflow/plugins; core-plugins: nf-amazon@2.15.0-patch2,nf-azure@1.16.0-patch1,nf-cloudcache@0.4.3,nf-codecommit@0.2.3,nf-console@1.2.1,nf-google@1.21.1,nf-k8s@1.0.1,nf-tower@1.11.4-patch2,nf-wave@1.12.1
+Oct-21 13:29:59.074 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Oct-21 13:29:59.083 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Oct-21 13:29:59.088 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Oct-21 13:29:59.130 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Oct-21 13:29:59.203 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /u/scratch/r/rgorzek/intergenome/nextflow.config
+Oct-21 13:29:59.207 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /u/scratch/r/rgorzek/intergenome/nextflow.config
+Oct-21 13:29:59.266 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /u/home/r/rgorzek/.nextflow/secrets/store.json
+Oct-21 13:29:59.273 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@68809cc7] - activable => nextflow.secret.LocalSecretsProvider@68809cc7
+Oct-21 13:29:59.287 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Oct-21 13:30:00.365 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Oct-21 13:30:00.394 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [crazy_sax] DSL2 - revision: 81d2b8c6db
+Oct-21 13:30:00.397 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Oct-21 13:30:00.398 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Oct-21 13:30:00.495 [main] DEBUG nextflow.Session - Session UUID: a4db5f63-4be3-4792-92ff-4493c9fe4f78
+Oct-21 13:30:00.496 [main] DEBUG nextflow.Session - Run name: crazy_sax
+Oct-21 13:30:00.497 [main] DEBUG nextflow.Session - Executor pool size: 2
+Oct-21 13:30:00.517 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Oct-21 13:30:00.530 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Oct-21 13:30:00.599 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.04.8 build 5956
+  Created: 06-10-2025 21:19 UTC (14:19 PDT)
+  System: Linux 3.10.0-1160.108.1.el7.x86_64
+  Runtime: Groovy 4.0.26 on Java HotSpot(TM) 64-Bit Server VM 17.0.12+8-LTS-286
+  Encoding: UTF-8 (ANSI_X3.4-1968)
+  Process: 179462@n6403 [172.16.132.203]
+  CPUs: 2 - Mem: 187.6 GB (129.4 GB) - Swap: 1.9 GB (1.9 GB)
+Oct-21 13:30:00.971 [main] DEBUG nextflow.Session - Work-dir: /u/scratch/r/rgorzek/intergenome/work [nfs]
+Oct-21 13:30:00.972 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /u/scratch/r/rgorzek/intergenome/bin
+Oct-21 13:30:00.986 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Oct-21 13:30:01.003 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Oct-21 13:30:01.021 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Oct-21 13:30:01.093 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Oct-21 13:30:01.105 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 3; maxThreads: 1000
+Oct-21 13:30:02.432 [main] DEBUG nextflow.Session - Session start
+Oct-21 13:30:03.361 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Oct-21 13:30:03.695 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Oct-21 13:30:03.696 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Oct-21 13:30:03.704 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Oct-21 13:30:03.712 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=2; memory=187.6 GB; capacity=2; pollInterval=100ms; dumpInterval=5m
+Oct-21 13:30:03.716 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Oct-21 13:30:03.750 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'DOWNLOAD_FASTQ': maxForks=0; fair=false; array=0
+Oct-21 13:30:03.880 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Oct-21 13:30:03.880 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Oct-21 13:30:03.882 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'PREP_REF': maxForks=0; fair=false; array=0
+Oct-21 13:30:03.889 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: DOWNLOAD_FASTQ, PREP_REF
+Oct-21 13:30:03.892 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+Oct-21 13:30:03.909 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > DOWNLOAD_FASTQ
+Oct-21 13:30:03.925 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PREP_REF
+Oct-21 13:30:03.933 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_e9ee249567c67ffb: /u/scratch/r/rgorzek/intergenome/main.nf
+Oct-21 13:30:03.933 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Oct-21 13:30:03.933 [main] DEBUG nextflow.Session - Session await
+Oct-21 13:30:04.037 [Actor Thread 6] WARN  nextflow.processor.TaskProcessor - Input tuple does not match tuple declaration in process `DOWNLOAD_FASTQ` -- offending value: [https://data.nemoarchive.org/biccn/grant/u01_lein/lein/transcriptome/sncell/10x_v3/opossum/raw/NW_TX0090-11_S01_L003-001.fastq.tar U01_Lein/Opossum NW_TX0090-11_TEST.fastq.tar, null, null]
+Oct-21 13:30:04.086 [Actor Thread 6] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=DOWNLOAD_FASTQ (null); work-dir=null
+  error [nextflow.exception.ProcessUnrecoverableException]: Process `DOWNLOAD_FASTQ (null)` script contains error(s)
+Oct-21 13:30:04.136 [Actor Thread 6] ERROR nextflow.processor.TaskProcessor - Error executing process > 'DOWNLOAD_FASTQ (null)'
+
+Caused by:
+  No such variable: file -- Check script 'main.nf' at line: 35
+
+
+Source block:
+  """
+  set -euo pipefail
+  mkdir -p "${folder}"
+  ${projectDir}/scripts/download_fastq.sh "${url}" "${projectDir}" "${params.fastq_dir}" "${folder}" "${file}"
+  """
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+Oct-21 13:30:04.225 [Actor Thread 6] DEBUG nextflow.Session - Session aborted -- Cause: Process `DOWNLOAD_FASTQ (null)` script contains error(s)
+Oct-21 13:30:04.268 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Oct-21 13:30:04.266 [Actor Thread 6] DEBUG nextflow.Session - The following nodes are still active:
+[process] DOWNLOAD_FASTQ
+  status=ACTIVE
+  port 0: (queue) closed; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+[process] PREP_REF
+  status=ACTIVE
+  port 0: (cntrl) -     ; channel: $
+
+Oct-21 13:30:04.282 [main] DEBUG nextflow.Session - Session await > all processes finished
+Oct-21 13:30:04.282 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Oct-21 13:30:04.285 [Actor Thread 1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=PREP_REF; work-dir=null
+  error [java.lang.InterruptedException]: java.lang.InterruptedException
+Oct-21 13:30:04.288 [Actor Thread 2] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=DOWNLOAD_FASTQ; work-dir=null
+  error [java.lang.InterruptedException]: java.lang.InterruptedException
+Oct-21 13:30:04.294 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=0; peakCpus=0; peakMemory=0; ]
+Oct-21 13:30:04.597 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Oct-21 13:30:05.268 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

@@ -23,7 +23,7 @@ cd "${DATADIR}"
 
 wget "${URL}" -O "${FILE}"
 tar -xf "${FILE}"
-rm -rf "${FILE}"
+rm "${FILE}"
 
 echo "Done. FASTQs in ${FOLDER}/${FILE%%.*}"
 

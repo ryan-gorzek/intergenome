@@ -1,0 +1,112 @@
+Oct-21 15:11:10.916 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf -resume
+Oct-21 15:11:11.550 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.04.8
+Oct-21 15:11:11.628 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/u/home/r/rgorzek/.nextflow/plugins; core-plugins: nf-amazon@2.15.0-patch2,nf-azure@1.16.0-patch1,nf-cloudcache@0.4.3,nf-codecommit@0.2.3,nf-console@1.2.1,nf-google@1.21.1,nf-k8s@1.0.1,nf-tower@1.11.4-patch2,nf-wave@1.12.1
+Oct-21 15:11:11.669 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Oct-21 15:11:11.671 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Oct-21 15:11:11.673 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Oct-21 15:11:11.689 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Oct-21 15:11:11.722 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /u/scratch/r/rgorzek/intergenome/nextflow.config
+Oct-21 15:11:11.724 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /u/scratch/r/rgorzek/intergenome/nextflow.config
+Oct-21 15:11:11.763 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /u/home/r/rgorzek/.nextflow/secrets/store.json
+Oct-21 15:11:11.767 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@512d4583] - activable => nextflow.secret.LocalSecretsProvider@512d4583
+Oct-21 15:11:11.775 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Oct-21 15:11:12.296 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Oct-21 15:11:12.312 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [special_pike] DSL2 - revision: 67a01e403b
+Oct-21 15:11:12.313 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Oct-21 15:11:12.314 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Oct-21 15:11:12.366 [main] DEBUG nextflow.Session - Session UUID: 90d01f3c-8d82-4eda-b358-82312c110432
+Oct-21 15:11:12.366 [main] DEBUG nextflow.Session - Run name: special_pike
+Oct-21 15:11:12.366 [main] DEBUG nextflow.Session - Executor pool size: 2
+Oct-21 15:11:12.374 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Oct-21 15:11:12.380 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Oct-21 15:11:12.944 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.04.8 build 5956
+  Created: 06-10-2025 21:19 UTC (14:19 PDT)
+  System: Linux 3.10.0-1160.108.1.el7.x86_64
+  Runtime: Groovy 4.0.26 on Java HotSpot(TM) 64-Bit Server VM 17.0.12+8-LTS-286
+  Encoding: UTF-8 (ANSI_X3.4-1968)
+  Process: 4033@n1863 [172.16.132.84]
+  CPUs: 2 - Mem: 188.6 GB (27.6 GB) - Swap: 1.9 GB (1.8 GB)
+Oct-21 15:11:13.282 [main] DEBUG nextflow.Session - Work-dir: /u/scratch/r/rgorzek/intergenome/work [nfs]
+Oct-21 15:11:13.331 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /u/scratch/r/rgorzek/intergenome/bin
+Oct-21 15:11:13.341 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Oct-21 15:11:13.350 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Oct-21 15:11:13.355 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Oct-21 15:11:13.472 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Oct-21 15:11:13.481 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 3; maxThreads: 1000
+Oct-21 15:11:13.880 [main] DEBUG nextflow.Session - Session start
+Oct-21 15:11:14.350 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Oct-21 15:11:14.492 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Oct-21 15:11:14.492 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Oct-21 15:11:14.498 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Oct-21 15:11:14.503 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=2; memory=188.6 GB; capacity=2; pollInterval=100ms; dumpInterval=5m
+Oct-21 15:11:14.505 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Oct-21 15:11:14.526 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'DOWNLOAD_FASTQ': maxForks=0; fair=false; array=0
+Oct-21 15:11:14.592 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Oct-21 15:11:14.592 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Oct-21 15:11:14.593 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'PREP_REF': maxForks=0; fair=false; array=0
+Oct-21 15:11:14.596 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: DOWNLOAD_FASTQ, PREP_REF
+Oct-21 15:11:14.598 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+Oct-21 15:11:14.602 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > DOWNLOAD_FASTQ
+Oct-21 15:11:14.603 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PREP_REF
+Oct-21 15:11:14.603 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_80eba10fb4a996a6: /u/scratch/r/rgorzek/intergenome/main.nf
+Oct-21 15:11:14.603 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Oct-21 15:11:14.603 [main] DEBUG nextflow.Session - Session await
+Oct-21 15:11:14.799 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Oct-21 15:11:14.800 [Task submitter] INFO  nextflow.Session - [ad/0b0d66] Submitted process > PREP_REF (ASM229v1)
+Oct-21 15:11:14.857 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Oct-21 15:11:14.858 [Task submitter] INFO  nextflow.Session - [3a/5bd2ad] Submitted process > DOWNLOAD_FASTQ (U01_Lein/Opossum)
+Oct-21 15:13:14.044 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: PREP_REF (ASM229v1); status: COMPLETED; exit: 1; error: -; workDir: /u/scratch/r/rgorzek/intergenome/work/ad/0b0d6632aa2a9162d2d8e60807d226]
+Oct-21 15:13:14.045 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Oct-21 15:13:14.071 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=PREP_REF (ASM229v1); work-dir=/u/scratch/r/rgorzek/intergenome/work/ad/0b0d6632aa2a9162d2d8e60807d226
+  error [nextflow.exception.ProcessFailedException]: Process `PREP_REF (ASM229v1)` terminated with an error exit status (1)
+Oct-21 15:13:14.182 [TaskFinalizer-1] ERROR nextflow.processor.TaskProcessor - Error executing process > 'PREP_REF (ASM229v1)'
+
+Caused by:
+  Process `PREP_REF (ASM229v1)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  set -euo pipefail
+  /u/scratch/r/rgorzek/intergenome/scripts/download_ensembl.sh "/u/scratch/r/rgorzek/intergenome" "ref" "monodelphis_domestica" "ASM229v1"
+  
+  cd "/u/scratch/r/rgorzek/intergenome/ref/ASM229v1"
+  
+  # Normalize names to 'genome.fa' and 'genes.gtf'
+  # download_ensembl.sh uses .dna.toplevel.fa and non-abinitio/non-chr GTF file
+  ln -sf $(ls *.dna.toplevel.fa | head -n1) genome.fa
+  ln -sf $(ls *.gtf | head -n1) genes.gtf
+  
+  # Emit for Nextflow
+  cp -a genome.fa $PWD/
+  cp -a genes.gtf $PWD/
+
+Command exit status:
+  1
+
+Command output:
+   -> Monodelphis_domestica.ASM229v1.dna.toplevel.fa.gz
+   -> Monodelphis_domestica.ASM229v1.115.gtf.gz
+  Done. FASTA & GTF in /u/scratch/r/rgorzek/intergenome/ref/ASM229v1
+
+Command error:
+   -> Monodelphis_domestica.ASM229v1.dna.toplevel.fa.gz
+   -> Monodelphis_domestica.ASM229v1.115.gtf.gz
+  Done. FASTA & GTF in /u/scratch/r/rgorzek/intergenome/ref/ASM229v1
+  cp: 'genome.fa' and '/u/scratch/r/rgorzek/intergenome/ref/ASM229v1/genome.fa' are the same file
+
+Work dir:
+  /u/scratch/r/rgorzek/intergenome/work/ad/0b0d6632aa2a9162d2d8e60807d226
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+Oct-21 15:13:14.189 [TaskFinalizer-1] DEBUG nextflow.Session - Session aborted -- Cause: Process `PREP_REF (ASM229v1)` terminated with an error exit status (1)
+Oct-21 15:13:14.203 [main] DEBUG nextflow.Session - Session await > all processes finished
+Oct-21 15:13:14.203 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Oct-21 15:13:14.204 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Oct-21 15:13:14.209 [main] WARN  n.processor.TaskPollingMonitor - Killing running tasks (1)
+Oct-21 15:13:14.542 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=1; succeedDuration=0ms; failedDuration=1m 59s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=0; ]
+Oct-21 15:13:14.556 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Oct-21 15:13:14.615 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
