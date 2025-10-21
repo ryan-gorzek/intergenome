@@ -1,0 +1,13 @@
+2025-10-21 13:02:01	-	lethal_colden	-	345f416fffe349379a5c9ed18118288f	5bd8a9e2-c65c-4470-87d8-8e41f2ea4297	nextflow run main.nf -resume
+2025-10-21 13:05:24	-	soggy_kimura	-	5d23602f97a219075f4bb04b2000aaa7	5bd8a9e2-c65c-4470-87d8-8e41f2ea4297	nextflow run main.nf -resume
+2025-10-21 13:11:19	6.6s	scruffy_saha	ERR	2db5ad60d1476d10a55fb657897dc173	5bd8a9e2-c65c-4470-87d8-8e41f2ea4297	nextflow run main.nf -resume
+2025-10-21 13:14:32	5.3s	tiny_easley	ERR	256ee40b473c3b6199c3ca6095883b6d	11bbbf62-3bfc-48ee-b5c2-3022dafa5f0c	nextflow run main.nf
+2025-10-21 13:30:00	4.9s	crazy_sax	ERR	81d2b8c6db24fcbdbd3180e409468370	a4db5f63-4be3-4792-92ff-4493c9fe4f78	nextflow run main.nf
+2025-10-21 13:30:52	7.1s	stupefied_kalman	ERR	3894c22439afac48afb490109240644a	90d01f3c-8d82-4eda-b358-82312c110432	nextflow run main.nf
+2025-10-21 13:32:46	6.8s	soggy_fourier	ERR	3894c22439afac48afb490109240644a	90d01f3c-8d82-4eda-b358-82312c110432	nextflow run main.nf -resume
+2025-10-21 13:42:03	4m 28s	sick_gutenberg	ERR	3894c22439afac48afb490109240644a	90d01f3c-8d82-4eda-b358-82312c110432	nextflow run main.nf -resume
+2025-10-21 14:47:26	4m 45s	trusting_poincare	ERR	a881dbd3b8bc7d186416cb03f7621326	90d01f3c-8d82-4eda-b358-82312c110432	nextflow run main.nf -resume
+2025-10-21 15:11:13	2m 2s	special_pike	ERR	67a01e403b0bdbee59aa194945ac9700	90d01f3c-8d82-4eda-b358-82312c110432	nextflow run main.nf -resume
+2025-10-21 15:40:07	-	romantic_lattes	-	818dc2050a0375f4041a83e810c32b4a	90d01f3c-8d82-4eda-b358-82312c110432	nextflow run main.nf -resume
+2025-10-21 16:01:04	-	drunk_wozniak	-	43b3b15e3342038e30ea990bc6a5c094	90d01f3c-8d82-4eda-b358-82312c110432	nextflow run main.nf -resume
+2025-10-21 16:06:09	24m 51s	adoring_agnesi	OK	52b0300bddcaa28d86a26d2efe718d63	90d01f3c-8d82-4eda-b358-82312c110432	nextflow run main.nf -resume
