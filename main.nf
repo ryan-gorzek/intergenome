@@ -7,7 +7,7 @@ def makeLocalFASTQChannel(String dir) {
       def sample = output[0]
       def r1 = output.find { it.toString().contains('_R1_') }
       def r2 = output.find { it.toString().contains('_R2_') }
-      [ sample, r1, r2 ]
+      tuple(sample as String, r1, r2)
     }
 }
 
