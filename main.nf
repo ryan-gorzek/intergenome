@@ -27,8 +27,6 @@ workflow {
     fastqs = DOWNLOAD_FASTQ(fastq_inputs)
   }
 
-  fastqs.view()
-
   // 2) Reference (FASTA + GTF)
   ref = PREP_REF()
 
