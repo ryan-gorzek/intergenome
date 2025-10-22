@@ -7,40 +7,52 @@ workflow {
     .splitCsv(header: false, sep: '\t')
     .map { row -> [ (row[0] as String), (row[1] as String), (row[2] as String) ] } // [url, folder, file]
 
-  fastq_dirs = DOWNLOAD_FASTQ(fastq_inputs)
+  fastqs = COPY_FASTQ(fastq_inputs)
 
   // 2) Reference (FASTA + GTF)
   ref = PREP_REF()
 
   // Expose to later workflows
   emit:
-    fastq_dirs        // Path to each downloaded/extracted folder of FASTQs
+    fastqs        // Path to each downloaded/extracted folder of FASTQs
     fasta = ref.fasta
     gtf = ref.gtf
 }
 
 // Processes //
 
+process COPY_FASTQ { // for testing, at the moment
+  tag "${folder}"
+
+  input:
+    tuple val(url), val(folder), val(file) // url and file are ignored for copy
+  output:
+    path "${folder}/*.fastq.gz", emit: fastqs
+
+  script:
+  """
+  set -euo pipefail
+  mkdir -p "\$(dirname "${folder}")"
+  ln -s "${projectDir}/${params.fastq_dir}/${folder}" "${folder}"
+  """
+}
+
 process DOWNLOAD_FASTQ {
   tag "${folder}"
-  publishDir "${params.fastq_dir}", mode: 'copy', overwrite: true
+  // publishDir "${params.fastq_dir}", mode: 'copy', overwrite: true
 
   input:
     tuple val(url), val(folder), val(file)
-
   output:
-    path "${folder}", emit: fastq_dir
+    path "${folder}/*.fastq.gz", emit: fastqs
 
   script:
   """
   set -euo pipefail
   mkdir -p "${folder}"
-  ${projectDir}/scripts/download_fastq.sh \
-    "${url}" \
-    "${projectDir}" \
-    "${params.fastq_dir}" \
-    "${folder}" \
-    "${file}"
+  wget -O "${file}" "${url}"
+  tar -C "${folder}" --strip-components=1 -xf "${file}"
+  rm -f "${file}"
   """
 }
 
@@ -73,11 +85,8 @@ process PREP_REF {
   fa="\${fas[0]-}"
   gt="\${gts[0]-}" 
 
-  ln -sf "\$fa" "\$DEST/genome.fa"
-  ln -sf "\$gt" "\$DEST/genes.gtf"
+  ln -sf "\$fa" "\$PWD/genome.fa"
+  ln -sf "\$gt" "\$PWD/genes.gtf"
 
-  # Emit for Nextflow
-  cp -a "\$DEST/genome.fa" \$PWD/
-  cp -a "\$DEST/genes.gtf" \$PWD/
   """
 }
