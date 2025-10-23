@@ -30,11 +30,10 @@ workflow {
   // 2) Reference (FASTA + GTF)
   ref = PREP_REF()
 
-  // Expose outputs to later workflows
-  emit:
-    fastqs        // Path to each downloaded/extracted folder of FASTQs
-    fasta = ref.fasta
-    gtf = ref.gtf
+  // 3) 10x Barcode Inclusion List
+  Channel
+    .fromPath(params.bc_inclist, checkIfExists: true)
+    .set { inclist }
 }
 
 // Processes //
