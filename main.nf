@@ -34,6 +34,17 @@ workflow {
   Channel
     .fromPath(params.bc_inclist, checkIfExists: true)
     .set { inclist }
+
+  // 4) STAR index (use existing or build)
+  Channel.of(params.star_index)
+    .map { it ? file(it) : null }
+    .set { maybe_index_dir }
+  index = maybe_index_dir.choice(
+    { it != null },
+    { it -> Channel.of(it) }, // use provided index
+    { 
+      STAR_INDEX(ref.fasta, ref.gtf) // build one
+    }
 }
 
 // Processes //
@@ -98,3 +109,42 @@ process PREP_REF {
 
   """
 }
+
+process STAR_INDEX {
+  tag "${params.build}"
+  publishDir "${params.ref_dir}/${params.build}/STARindex", mode: 'copy', overwrite: true
+
+  input:
+    path fasta
+    path gtf
+
+  output:
+    path "STARindex"
+
+  cpus params.threads
+  memory '24 GB'
+  container 'quay.io/biocontainers/star:2.7.11b--h43eeafb_0'
+
+  script:
+  """
+  set -euo pipefail
+  mkdir -p STARindex
+  STAR \\
+    --runThreadN ${task.cpus} \\
+    --runMode genomeGenerate \\
+    --genomeDir STARindex \\
+    --genomeFastaFiles ${fasta} \\
+    --sjdbGTFfile ${gtf} \\
+    --sjdbOverhang $(( ${params.read_length} - 1 ))
+  """
+}
+
+
+
+
+
+
+
+
+
+
