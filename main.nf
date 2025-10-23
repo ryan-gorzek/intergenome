@@ -41,10 +41,7 @@ workflow {
     : STAR_INDEX(ref.fasta, ref.gtf)
 
   // 5) STARsolo align (currently optimized for 10x v3 3')
-  alignment = fastqs
-    .combine(index)
-    .combine(inclist)
-    | STARSOLO_ALIGN
+  alignment = STARSOLO_ALIGN(fastqs, index, inclist)
 
 }
 
@@ -138,7 +135,7 @@ process STAR_INDEX {
 
 process STARSOLO_ALIGN {
   tag "$sample"
-  publishDir "${params.outdir}/star/${sample}", mode: 'copy', overwrite: true
+  publishDir "${params.out_dir}/star", mode: 'copy', overwrite: true
 
   input:
     tuple val(sample), path(r1), path(r2) // FASTQ information
@@ -153,24 +150,23 @@ process STARSOLO_ALIGN {
   script:
   """
   set -euo pipefail
-  STAR \
-    --runThreadN ${task.cpus} \
-    --genomeDir ${index} \
-    --readFilesIn ${r1} ${r2} \
-    --readFilesCommand zcat \
-    --outFileNamePrefix ${sample}/ \
-    --outSAMtype BAM SortedByCoordinate \
-    --soloType CB_UMI_Simple \
-    --soloCBstart 1 --soloCBlen 16 \
-    --soloUMIstart 17 --soloUMIlen 12 \
-    --soloCBwhitelist ${inclist} \
-    --soloFeatures GeneFull \ # GeneFull for single-nucleus RNA
-    --soloMultiMappers EM \
-    --soloStrand Forward \
-    --clipAdapterType CellRanger4 \
-    --soloBarcodeReadLength 0
+  STAR \\
+    --runThreadN ${task.cpus} \\
+    --genomeDir ${index} \\
+    --readFilesIn ${r2} ${r1} \\
+    --readFilesCommand zcat \\
+    --outFileNamePrefix ${sample}/ \\
+    --outSAMtype BAM SortedByCoordinate \\
+    --soloType CB_UMI_Simple \\
+    --soloCBstart 1 --soloCBlen 16 \\
+    --soloUMIstart 17 --soloUMIlen 12 \\
+    --soloCBwhitelist ${inclist} \\
+    --soloFeatures GeneFull \\
+    --soloMultiMappers EM \\
+    --soloStrand Forward \\
+    --clipAdapterType CellRanger4
   """
-
+}
 
 
 
