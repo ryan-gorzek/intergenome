@@ -30,15 +30,21 @@ workflow {
   // 2) Reference (FASTA + GTF)
   ref = PREP_REF()
 
-  // 3) 10x Barcode Inclusion List
+  // 3) Barcode Inclusion List
   Channel
     .fromPath(params.bc_inclist, checkIfExists: true)
     .set { inclist }
 
-  // 4) STAR index (just build for now)
+  // 4) STAR index (build or specify path)
   index = params.star_index
     ? Channel.of( file(params.star_index) )
     : STAR_INDEX(ref.fasta, ref.gtf)
+
+  // 5) STARsolo align (currently optimized for 10x v3 3')
+  alignment = fastqs
+    .combine(index)
+    .combine(inclist)
+    | STARSOLO_ALIGN
 
 }
 
@@ -116,10 +122,6 @@ process STAR_INDEX {
   output:
     path "STARindex"
 
-  cpus params.threads
-  memory '24 GB'
-  container 'quay.io/biocontainers/star:2.7.11b--h43eeafb_0'
-
   script:
   """
   set -euo pipefail
@@ -133,6 +135,49 @@ process STAR_INDEX {
     --sjdbOverhang \$(( ${params.read_length} - 1 ))
   """
 }
+
+process STARSOLO_ALIGN {
+  tag "$sample"
+  publishDir "${params.outdir}/star/${sample}", mode: 'copy', overwrite: true
+
+  input:
+    tuple val(sample), path(r1), path(r2) // FASTQ information
+    path index                            // STAR index
+    path inclist                          // Barcode inclusion list (.txt)
+
+  output:
+    path "${sample}/Aligned.sortedByCoord.out.bam", emit: bam
+    path "${sample}/Log.final.out", optional: true
+    path "${sample}/Solo.out/**", emit: solo
+
+  script:
+  """
+  set -euo pipefail
+  STAR \
+    --runThreadN ${task.cpus} \
+    --genomeDir ${index} \
+    --readFilesIn ${r1} ${r2} \
+    --readFilesCommand zcat \
+    --outFileNamePrefix ${sample}/ \
+    --outSAMtype BAM SortedByCoordinate \
+    --soloType CB_UMI_Simple \
+    --soloCBstart 1 --soloCBlen 16 \
+    --soloUMIstart 17 --soloUMIlen 12 \
+    --soloCBwhitelist ${inclist} \
+    --soloFeatures GeneFull \ # GeneFull for single-nucleus RNA
+    --soloMultiMappers EM \
+    --soloStrand Forward \
+    --clipAdapterType CellRanger4 \
+    --soloBarcodeReadLength 0
+  """
+
+
+
+
+
+
+
+
 
 
 
