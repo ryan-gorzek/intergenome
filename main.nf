@@ -35,16 +35,16 @@ workflow {
     .fromPath(params.bc_inclist, checkIfExists: true)
     .set { inclist }
 
-  // 4) STAR index (use existing or build)
-  Channel.of(params.star_index)
-    .map { it ? file(it) : null }
-    .set { maybe_index_dir }
-  index = maybe_index_dir.choice(
-    { it != null },
-    { it -> Channel.of(it) }, // use provided index
-    { 
-      STAR_INDEX(ref.fasta, ref.gtf) // build one
-    }
+  // 4) STAR index (just build for now)
+  index = STAR_INDEX(ref.fasta, ref.gtf)
+  //maybe_index_dir = Channel
+  //  .of(params.star_index)
+  //  .filter { it }
+  //  .map { file(it) }
+  //index = maybe_index_dir
+  //  .ifEmpty {
+  //    STAR_INDEX(ref.fasta, ref.gtf)
+  //  }
 }
 
 // Processes //
@@ -135,7 +135,7 @@ process STAR_INDEX {
     --genomeDir STARindex \\
     --genomeFastaFiles ${fasta} \\
     --sjdbGTFfile ${gtf} \\
-    --sjdbOverhang $(( ${params.read_length} - 1 ))
+    --sjdbOverhang \$(( ${params.read_length} - 1 ))
   """
 }
 
