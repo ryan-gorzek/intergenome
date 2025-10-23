@@ -1,0 +1,19 @@
+### /u/scratch/r/rgorzek/intergenome/work/conda/env-18f3253d78a716d7-772fd9a59875da9c3a4fea886659c235/bin/STAR-avx2   --runMode genomeGenerate      --runThreadN 8   --genomeDir STARindex   --genomeFastaFiles genome.fa      --sjdbGTFfile genes.gtf   --sjdbOverhang 99
+### GstrandBit 33
+versionGenome	2.7.4a
+genomeType	Full
+genomeFastaFiles	genome.fa 
+genomeSAindexNbases	14
+genomeChrBinNbits	18
+genomeSAsparseD	1
+genomeTransformType	None
+genomeTransformVCF	-
+sjdbOverhang	99
+sjdbFileChrStartEnd	- 
+sjdbGTFfile	genes.gtf
+sjdbGTFchrPrefix	-
+sjdbGTFfeatureExon	exon
+sjdbGTFtagExonParentTranscript	transcript_id
+sjdbGTFtagExonParentGene	gene_id
+sjdbInsertSave	Basic
+genomeFileSizes	4918672509 30134738538

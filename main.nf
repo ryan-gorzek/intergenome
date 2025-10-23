@@ -36,15 +36,10 @@ workflow {
     .set { inclist }
 
   // 4) STAR index (just build for now)
-  index = STAR_INDEX(ref.fasta, ref.gtf)
-  //maybe_index_dir = Channel
-  //  .of(params.star_index)
-  //  .filter { it }
-  //  .map { file(it) }
-  //index = maybe_index_dir
-  //  .ifEmpty {
-  //    STAR_INDEX(ref.fasta, ref.gtf)
-  //  }
+  index = params.star_index
+    ? Channel.of( file(params.star_index) )
+    : STAR_INDEX(ref.fasta, ref.gtf)
+
 }
 
 // Processes //
@@ -112,7 +107,7 @@ process PREP_REF {
 
 process STAR_INDEX {
   tag "${params.build}"
-  publishDir "${params.ref_dir}/${params.build}/STARindex", mode: 'copy', overwrite: true
+  publishDir "${params.ref_dir}/${params.build}", mode: 'copy', overwrite: true
 
   input:
     path fasta
