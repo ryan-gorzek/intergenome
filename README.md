@@ -15,7 +15,7 @@ Intergenic reads are an information source for unannotated transcription, enhanc
 - Distance metrics: nearest upstream/downstream gene with sign conventions (− upstream, + downstream).
 - Summaries: per-chromosome and genome-wide histograms; TSVs for downstream plots.
 
-Repo structure: `envs/`, `manifests/`, `scripts/`, `main.nf`, `nextflow.config`, `LICENSE`. :contentReference[oaicite:1]{index=1}
+Repo structure: `envs/`, `manifests/`, `scripts/`, `main.nf`, `nextflow.config`, `LICENSE`.
 
 ## Quick start
 
@@ -42,7 +42,7 @@ nextflow run ryan-gorzek/intergenome \
 ```
 # intergenome
 
-Nextflow DSL2 pipeline for STARsolo alignment and intergenic-read analysis. Under active development. :contentReference[oaicite:0]{index=0}
+Nextflow DSL2 pipeline for STARsolo alignment and intergenic-read analysis. Under active development.
 
 ## Rationale
 
@@ -57,7 +57,7 @@ Intergenic reads are an information source for unannotated transcription, enhanc
 - Distance metrics: nearest upstream/downstream gene with sign conventions (− upstream, + downstream).
 - Summaries: per-chromosome and genome-wide histograms; TSVs for downstream plots.
 
-Repo structure: `envs/`, `manifests/`, `scripts/`, `main.nf`, `nextflow.config`, `LICENSE`. :contentReference[oaicite:1]{index=1}
+Repo structure: `envs/`, `manifests/`, `scripts/`, `main.nf`, `nextflow.config`, `LICENSE`.
 
 ## Quick start
 
@@ -122,5 +122,3 @@ For a read at position x and nearest gene G:
 ## License
 
 MIT. ([GitHub][1])
-
-
