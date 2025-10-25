@@ -1,6 +1,6 @@
 # intergenome
 
-Nextflow DSL2 pipeline for STARsolo alignment and intergenic-read analysis. Under active development. :contentReference[oaicite:0]{index=0}
+Nextflow DSL2 pipeline for STARsolo alignment and intergenic-read analysis. Under active development.
 
 ## Rationale
 
@@ -122,3 +122,4 @@ For a read at position x and nearest gene G:
 ## License
 
 MIT. ([GitHub][1])
+
