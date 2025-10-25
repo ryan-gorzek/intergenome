@@ -121,5 +121,4 @@ For a read at position x and nearest gene G:
 
 ## License
 
-MIT. ([GitHub][1])
-
+MIT. See `LICENSE`.
