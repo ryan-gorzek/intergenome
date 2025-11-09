@@ -42,11 +42,11 @@ nextflow run ryan-gorzek/intergenome \
 ```
 # intergenome
 
-Nextflow DSL2 pipeline for STARsolo alignment and intergenic-read analysis. Under active development.
+Nextflow DSL2 pipeline for STARsolo alignment and intergenic read analysis. Under active development.
 
 ## Rationale
 
-Intergenic reads are an information source for unannotated transcription, enhancer RNA, and species-specific genome organization. The target outcome is a cross-species mapping of intergenic read distributions with strand and orientation context, benchmarked against current annotations and distance to nearest genes.
+Intergenic reads are an information source for unannotated transcription, enhancer RNA, and species-specific genome organization. The target outcome of this pipeline is a distribution of these reads relative to provided annotations (distance to the nearest gene), for comparison among species, samples, or methods.
 
 ## Current capabilities
 
@@ -122,3 +122,4 @@ For a read at position x and nearest gene G:
 ## License
 
 MIT. See `LICENSE`.
+
