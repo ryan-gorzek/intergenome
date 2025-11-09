@@ -4,48 +4,6 @@ Nextflow DSL2 pipeline for STARsolo alignment and intergenic read analysis. Unde
 
 ## Rationale
 
-Intergenic reads are an information source for unannotated transcription, enhancer RNA, and species-specific genome organization. The target outcome is a cross-species mapping of intergenic read distributions with strand and orientation context, benchmarked against current annotations and distance to nearest genes.
-
-## Current capabilities
-
-- Reference prep: FASTA + GTF fetch/normalize; STAR index build or use existing index.
-- 10x/FASTQ ingest: local or manifest-driven downloads; optional subsampling for smoke tests.
-- Alignment: STARsolo with CB/UMI handling; sorted BAM output.
-- Intergenic filtering: retain mapped reads not overlapping gene features; export to BED.
-- Distance metrics: nearest upstream/downstream gene with sign conventions (− upstream, + downstream).
-- Summaries: per-chromosome and genome-wide histograms; TSVs for downstream plots.
-
-Repo structure: `envs/`, `manifests/`, `scripts/`, `main.nf`, `nextflow.config`, `LICENSE`.
-
-## Quick start
-
-```bash
-# 1) Environment (example)
-module load java
-# Nextflow installed or in PATH
-
-# 2) Run: local FASTQs
-nextflow run ryan-gorzek/intergenome \
-  -profile local \
-  --fastq_mode local \
-  --fastq_dir /path/to/fastqs \
-  --species mus_musculus \
-  --build GRCm39
-
-# 3) Run: manifest (URL<TAB>sample<TAB>folder)
-nextflow run ryan-gorzek/intergenome \
-  -profile local \
-  --fastq_mode download \
-  --fastq_manifest manifests/fastq_manifest.tsv \
-  --species monodelphis_domestica \
-  --build ASM229v1
-```
-# intergenome
-
-Nextflow DSL2 pipeline for STARsolo alignment and intergenic read analysis. Under active development.
-
-## Rationale
-
 Intergenic reads are an information source for unannotated transcription, enhancer RNA, and species-specific genome organization. The target outcome of this pipeline is a distribution of these reads relative to provided annotations (distance to the nearest gene), for comparison among species, samples, or methods.
 
 ## Current capabilities
@@ -122,4 +80,5 @@ For a read at position x and nearest gene G:
 ## License
 
 MIT. See `LICENSE`.
+
 
