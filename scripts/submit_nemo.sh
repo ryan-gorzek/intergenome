@@ -2,7 +2,7 @@
 #$ -cwd
 #$ -o jobs/joblog.$JOB_ID
 #$ -j y
-#$ -l h_data=48G,h_rt=24:00:00
+#$ -l h_data=48G,h_rt=12:00:00
 #$ -N intergenome_nemo
 #$ -M rgorzek@ucla.edu
 #$ -m bea

@@ -86,7 +86,7 @@ process DOWNLOAD_FASTQ {
   """
   set -euo pipefail
 
-  wget -O download.fastq.tar "${url}"
+  wget -c -O download.fastq.tar "${url}"
   tmpdir=\$(mktemp -d)
   tar -C "\$tmpdir" -xf download.fastq.tar
 

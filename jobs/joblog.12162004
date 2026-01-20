@@ -1,0 +1,116 @@
+==========================================
+Job started on n1820 at Mon Jan 19 22:11:13 PST 2026
+Job ID: 12162004
+Working directory: /u/scratch/r/rgorzek/intergenome
+==========================================
+
+      N E X T F L O W
+      version 25.04.8 build 5956
+      created 06-10-2025 21:19 UTC (14:19 PDT)
+      cite doi:10.1038/nbt.3820
+      http://nextflow.io
+
+
+Environment Information:
+----------------------------------------
+Nextflow version:
+
+      N E X T F L O W
+      version 25.04.8 build 5956
+      created 06-10-2025 21:19 UTC (14:19 PDT)
+      cite doi:10.1038/nbt.3820
+      http://nextflow.io
+
+
+STAR version:
+2.7.11b
+
+Python version:
+Python 3.14.2
+----------------------------------------
+
+Manifest file: manifests/test_nemo.tsv
+STAR index: ref/ASM229v1/STARindex
+
+Starting Nextflow pipeline...
+==========================================
+Nextflow 25.10.2 is available - Please consider updating your version to it
+
+ N E X T F L O W   ~  version 25.04.8
+
+Launching `main.nf` [sharp_torvalds] DSL2 - revision: 3fe6f460e7
+
+[-        ] DOWNLOAD_FASTQ     -
+[-        ] PREP_REF           -
+[-        ] STARSOLO_ALIGN     -
+[-        ] BUILD_GENE_BEDS    -
+[-        ] CONVERT_TO_H5AD    -
+[-        ] EXTRACT_INTERGENIC -
+[-        ] CALC_DISTANCES     -
+[-        ] CALC_HISTOGRAMS    -
+[-        ] AGGREGATE_QC       -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] DOWNLOAD_FASTQ      -
+[43/2de3c0] PREP_REF (ASM229v1) | 1 of 1, cached: 1 ✔
+[-        ] STARSOLO_ALIGN      -
+[-        ] BUILD_GENE_BEDS     -
+[-        ] CONVERT_TO_H5AD     -
+[-        ] EXTRACT_INTERGENIC  -
+[-        ] CALC_DISTANCES      -
+[-        ] CALC_HISTOGRAMS     -
+[-        ] AGGREGATE_QC        -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] DOWNLOAD_FASTQ             | 0 of 2
+[43/2de3c0] PREP_REF (ASM229v1)        | 1 of 1, cached: 1 ✔
+[-        ] STARSOLO_ALIGN             -
+[64/969f88] BUILD_GENE_BEDS (ASM229v1) | 1 of 1, cached: 1
+[-        ] CONVERT_TO_H5AD            -
+[-        ] EXTRACT_INTERGENIC         -
+[-        ] CALC_DISTANCES             -
+[-        ] CALC_HISTOGRAMS            -
+[-        ] AGGREGATE_QC               -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+executor >  local (1)
+[ae/e4e7d5] DOW…D_FASTQ (U01_Lein/opossum) | 0 of 2
+[43/2de3c0] PREP_REF (ASM229v1)            | 1 of 1, cached: 1 ✔
+[-        ] STARSOLO_ALIGN                 -
+[64/969f88] BUILD_GENE_BEDS (ASM229v1)     | 1 of 1, cached: 1 ✔
+[-        ] CONVERT_TO_H5AD                -
+[-        ] EXTRACT_INTERGENIC             -
+[-        ] CALC_DISTANCES                 -
+[-        ] CALC_HISTOGRAMS                -
+[-        ] AGGREGATE_QC                   -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+executor >  local (2)
+[56/e42eb1] DOW…D_FASTQ (U01_Lein/opossum) | 0 of 2
+[43/2de3c0] PREP_REF (ASM229v1)            | 1 of 1, cached: 1 ✔
+[-        ] STARSOLO_ALIGN                 -
+[64/969f88] BUILD_GENE_BEDS (ASM229v1)     | 1 of 1, cached: 1 ✔
+[-        ] CONVERT_TO_H5AD                -
+[-        ] EXTRACT_INTERGENIC             -
+[-        ] CALC_DISTANCES                 -
+[-        ] CALC_HISTOGRAMS                -
+[-        ] AGGREGATE_QC                   -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+executor >  local (2)
+[56/e42eb1] DOW…D_FASTQ (U01_Lein/opossum) | 0 of 2
+[43/2de3c0] PREP_REF (ASM229v1)            | 1 of 1, cached: 1 ✔
+[-        ] STARSOLO_ALIGN                 -
+[64/969f88] BUILD_GENE_BEDS (ASM229v1)     | 1 of 1, cached: 1 ✔
+[-        ] CONVERT_TO_H5AD                -
+[-        ] EXTRACT_INTERGENIC             -
+[-        ] CALC_DISTANCES                 -
+[-        ] CALC_HISTOGRAMS                -
+[-        ] AGGREGATE_QC                   -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
