@@ -23,6 +23,9 @@ echo "=========================================="
 source load_nf.sh
 conda activate rnaseq
 
+# Load STAR module AFTER conda activate so it takes precedence in PATH
+module load star/2.7.10a
+
 # Display environment info
 echo ""
 echo "Environment Information:"
