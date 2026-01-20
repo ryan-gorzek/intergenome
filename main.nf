@@ -220,6 +220,7 @@ process STARSOLO_ALIGN {
     --soloCBstart 1 --soloCBlen 16 \\
     --soloUMIstart 17 --soloUMIlen 12 \\
     --soloCBwhitelist ${inclist} \\
+    --soloBarcodeReadLength 0 \\
     --soloFeatures GeneFull \\
     --soloMultiMappers EM \\
     --soloStrand Forward \\
