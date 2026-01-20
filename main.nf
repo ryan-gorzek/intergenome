@@ -82,20 +82,47 @@ process DOWNLOAD_FASTQ {
     tuple val(sample), path("*_R1.fastq.gz"), path("*_R2.fastq.gz")
 
   script:
+  def aspera_path = url.replaceFirst('https://data.nemoarchive.org', '')
 
-  """
-  set -euo pipefail
+  if (params.download_method == 'aspera')
+    """
+    set -euo pipefail
 
-  wget -c -O download.fastq.tar "${url}"
-  tmpdir=\$(mktemp -d)
-  tar -C "\$tmpdir" -xf download.fastq.tar
+    # Aspera download (much faster than wget)
+    # Find the Aspera key (module or home install)
+    ASPERA_KEY="\$(find /u/local/apps/aspera-connect -name 'asperaweb_id_dsa.openssh' 2>/dev/null | head -1)"
+    if [ -z "\$ASPERA_KEY" ]; then
+      ASPERA_KEY="\$HOME/.aspera/connect/etc/asperaweb_id_dsa.openssh"
+    fi
 
-  r1=\$(find "\$tmpdir" -type f -name "*_R1_*.fastq.gz" | head -n1)
-  r2=\$(find "\$tmpdir" -type f -name "*_R2_*.fastq.gz" | head -n1)
+    ascp -QT -l 500m -P 33001 -k 2 \\
+      -i "\$ASPERA_KEY" \\
+      asp-nemo@data.nemoarchive.org:${aspera_path} \\
+      download.fastq.tar
 
-  ln -s "\$r1" "${sample}_R1.fastq.gz"
-  ln -s "\$r2" "${sample}_R2.fastq.gz"
-  """
+    tmpdir=\$(mktemp -d)
+    tar -C "\$tmpdir" -xf download.fastq.tar
+
+    r1=\$(find "\$tmpdir" -type f -name "*_R1_*.fastq.gz" | head -n1)
+    r2=\$(find "\$tmpdir" -type f -name "*_R2_*.fastq.gz" | head -n1)
+
+    ln -s "\$r1" "${sample}_R1.fastq.gz"
+    ln -s "\$r2" "${sample}_R2.fastq.gz"
+    """
+  else
+    """
+    set -euo pipefail
+
+    wget -c -O download.fastq.tar "${url}"
+    tmpdir=\$(mktemp -d)
+    tar -C "\$tmpdir" -xf download.fastq.tar
+
+    r1=\$(find "\$tmpdir" -type f -name "*_R1_*.fastq.gz" | head -n1)
+    r2=\$(find "\$tmpdir" -type f -name "*_R2_*.fastq.gz" | head -n1)
+
+    ln -s "\$r1" "${sample}_R1.fastq.gz"
+    ln -s "\$r2" "${sample}_R2.fastq.gz"
+    """
 }
 
 process PREP_REF {

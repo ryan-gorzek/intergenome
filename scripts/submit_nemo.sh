@@ -35,6 +35,9 @@ STAR --version
 echo ""
 echo "Python version:"
 python --version
+echo ""
+echo "Aspera version:"
+ascp --version | head -2
 echo "----------------------------------------"
 echo ""
 

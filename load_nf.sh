@@ -3,6 +3,7 @@ set -euo pipefail
 
 module load java/jdk-17.0.12
 module load anaconda3
+module load aspera-connect/3.10.1
 # Add Nextflow to PATH
 export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 export NXF_OPTS='-Xms256m -Xmx1g -Xss256k -XX:+UseSerialGC -XX:ActiveProcessorCount=8'
