@@ -27,6 +27,11 @@ workflow {
     fastqs = DOWNLOAD_FASTQ(fastq_inputs)
   }
 
+  // Stop here if download_only mode
+  if (params.download_only) {
+    return
+  }
+
   // 2) Reference (FASTA + GTF)
   ref = PREP_REF()
 
@@ -74,7 +79,7 @@ workflow {
 
 process DOWNLOAD_FASTQ {
   tag "${folder}"
-  // publishDir "${params.fastq_dir}", mode: 'copy', overwrite: true
+  publishDir "${params.out_dir}/fastq/${folder}", mode: 'copy', overwrite: true
 
   input:
     tuple val(url), val(folder), val(sample)
