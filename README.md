@@ -112,7 +112,7 @@ Distances are stratified by gene biotype and 3'UTR annotation status:
 
 ## NeMO archive data
 
-The pipeline supports bulk downloads from the BICCN NeMO archive. Available species (21 total):
+One of the largest and most intriguing ways to study intergenic reads distributions is the Allen Brain Institute's Cross-Species M1 dataset. This pipeline supports bulk downloads from the BICCN NeMO archive. Available species (21 total):
 
 ```
 human, opossum, macaque, rat, chimpanzee, gorilla, baboon,
@@ -121,7 +121,7 @@ arctic_ground_squirrel, armadillo, common_tree_shrew, green_monkey,
 pig_tailed_macaque, rhesus_macaque, small-eared_galago
 ```
 
-To download Cross-Species-M1 manifests:
+To download NeMO manifests for this data:
 ```bash
 ./scripts/fetch_nemo_manifests.sh --list           # See available species
 ./scripts/fetch_nemo_manifests.sh human opossum    # Fetch specific species
@@ -130,3 +130,4 @@ To download Cross-Species-M1 manifests:
 ## License
 
 MIT. See `LICENSE`.
+
