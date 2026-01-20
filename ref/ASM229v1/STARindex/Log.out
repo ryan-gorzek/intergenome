@@ -1,7 +1,7 @@
 STAR version=2.7.11b
-STAR compilation time,server,dir=2025-07-24T03:06:21+0000 :/opt/conda/conda-bld/star_1753326220084/work/source
+STAR compilation time,server,dir=2025-11-14T12:06:42+0000 :/opt/conda/conda-bld/star_1763121846936/work/source
 ##### Command Line:
-/u/scratch/r/rgorzek/intergenome/work/conda/env-18f3253d78a716d7-772fd9a59875da9c3a4fea886659c235/bin/STAR-avx2 --runThreadN 8 --runMode genomeGenerate --genomeDir STARindex --genomeFastaFiles genome.fa --sjdbGTFfile genes.gtf --sjdbOverhang 99
+/u/home/r/rgorzek/.conda/envs/rnaseq/bin/STAR-avx2 --runThreadN 8 --runMode genomeGenerate --genomeDir STARindex --genomeFastaFiles genome.fa --sjdbGTFfile genes.gtf --sjdbOverhang 99
 ##### Initial USER parameters from Command Line:
 ###### All USER parameters from Command Line:
 runThreadN                    8     ~RE-DEFINED
@@ -22,14 +22,14 @@ sjdbOverhang                      99
 
 -------------------------------
 ##### Final effective command line:
-/u/scratch/r/rgorzek/intergenome/work/conda/env-18f3253d78a716d7-772fd9a59875da9c3a4fea886659c235/bin/STAR-avx2   --runMode genomeGenerate      --runThreadN 8   --genomeDir STARindex   --genomeFastaFiles genome.fa      --sjdbGTFfile genes.gtf   --sjdbOverhang 99
+/u/home/r/rgorzek/.conda/envs/rnaseq/bin/STAR-avx2   --runMode genomeGenerate      --runThreadN 8   --genomeDir STARindex   --genomeFastaFiles genome.fa      --sjdbGTFfile genes.gtf   --sjdbOverhang 99
 ----------------------------------------
 
 Number of fastq files for each mate = 1
 ParametersSolo: --soloCellFilterType CellRanger2.2 filtering parameters:  3000 0.99 10
 Finished loading and checking parameters
 --genomeDir directory exists and will be overwritten: STARindex/
-Oct 23 00:53:56 ... starting to generate Genome files
+Jan 19 20:53:08 ... starting to generate Genome files
 genome.fa : chr # 0  "1" chrStart: 0
 genome.fa : chr # 1  "2" chrStart: 748158976
 genome.fa : chr # 2  "3" chrStart: 1289748480
@@ -10309,81 +10309,81 @@ AAFR03072810.1	547
 AAFR03072811.1	521
 Genome sequence total length = 3600504728
 Genome size with padding = 4874829824
-Oct 23 00:54:41 ..... processing annotations GTF
+Jan 19 20:53:56 ..... processing annotations GTF
 Processing pGe.sjdbGTFfile=genes.gtf, found:
 		58883 transcripts
 		471187 exons (non-collapsed)
 		220335 collapsed junctions
 Total junctions: 220335
-Oct 23 00:54:46 ..... finished GTF processing
+Jan 19 20:54:00 ..... finished GTF processing
 
 Estimated genome size with padding and SJs: total=genome+SJ=5073829824 = 4874829824 + 199000000
 GstrandBit=33
 Number of SA indices: 7003320598
-Oct 23 00:55:03 ... starting to sort Suffix Array. This may take a long time...
+Jan 19 20:54:15 ... starting to sort Suffix Array. This may take a long time...
 Number of chunks: 40;   chunks size limit: 1593775504 bytes
-Oct 23 00:55:20 ... sorting Suffix Array chunks and saving them to disk...
-Writing 1156174464 bytes into STARindex//SA_0 ; empty space on disk = 7184828417048576 bytes ... done
-Writing 1467807080 bytes into STARindex//SA_2 ; empty space on disk = 7184808199061504 bytes ... done
-Writing 1428435152 bytes into STARindex//SA_6 ; empty space on disk = 7184788664025088 bytes ... done
-Writing 1531876216 bytes into STARindex//SA_4 ; empty space on disk = 7184772520148992 bytes ... done
-Writing 1441811960 bytes into STARindex//SA_1 ; empty space on disk = 7185014586867712 bytes ...Writing 1422190032 bytes into STARindex//SA_3 ; empty space on disk = 7185014586867712 bytes ...Writing 1394929960 bytes into STARindex//SA_7 ; empty space on disk = 7185014586867712 bytes ... done
+Jan 19 20:54:33 ... sorting Suffix Array chunks and saving them to disk...
+Writing 1156174464 bytes into STARindex//SA_0 ; empty space on disk = 11098098968297472 bytes ... done
+Writing 1422190032 bytes into STARindex//SA_3 ; empty space on disk = 11097994892607488 bytes ... done
+Writing 1428435152 bytes into STARindex//SA_6 ; empty space on disk = 11097949317103616 bytes ... done
+Writing 1571819032 bytes into STARindex//SA_5 ; empty space on disk = 11097877337997312 bytes ... done
+Writing 1441811960 bytes into STARindex//SA_1 ; empty space on disk = 11097877040332800 bytes ... done
+Writing 1467807080 bytes into STARindex//SA_2 ; empty space on disk = 11097840533110784 bytes ... done
+Writing 1394929960 bytes into STARindex//SA_7 ; empty space on disk = 11097837516423168 bytes ... done
+Writing 1531876216 bytes into STARindex//SA_4 ; empty space on disk = 11097808124641280 bytes ... done
+Writing 1560382712 bytes into STARindex//SA_8 ; empty space on disk = 11097210121158656 bytes ... done
+Writing 986161160 bytes into STARindex//SA_11 ; empty space on disk = 11097007123922944 bytes ... done
+Writing 1356558376 bytes into STARindex//SA_10 ; empty space on disk = 11095928552030208 bytes ... done
+Writing 1456083632 bytes into STARindex//SA_9 ; empty space on disk = 11095760349233152 bytes ...Writing 1396967672 bytes into STARindex//SA_13 ; empty space on disk = 11095760349233152 bytes ... done
  done
+Writing 1467544184 bytes into STARindex//SA_14 ; empty space on disk = 11095543967449088 bytes ... done
+Writing 1379354496 bytes into STARindex//SA_15 ; empty space on disk = 11095543967449088 bytes ... done
+Writing 1482054520 bytes into STARindex//SA_12 ; empty space on disk = 11095040392691712 bytes ... done
+Writing 1558337344 bytes into STARindex//SA_16 ; empty space on disk = 11093726494785536 bytes ... done
+Writing 1376509760 bytes into STARindex//SA_17 ; empty space on disk = 11093087662374912 bytes ... done
+Writing 1520120488 bytes into STARindex//SA_19 ; empty space on disk = 11092925013032960 bytes ...Writing 1542116104 bytes into STARindex//SA_18 ; empty space on disk = 11092925013032960 bytes ... done
  done
-Writing 1571819032 bytes into STARindex//SA_5 ; empty space on disk = 7184715860738048 bytes ... done
-Writing 1560382712 bytes into STARindex//SA_8 ; empty space on disk = 7184801005436928 bytes ... done
-Writing 986161160 bytes into STARindex//SA_11 ; empty space on disk = 7184852723499008 bytes ... done
-Writing 1456083632 bytes into STARindex//SA_9 ; empty space on disk = 7184916274675712 bytes ... done
-Writing 1356558376 bytes into STARindex//SA_10 ; empty space on disk = 7184921875054592 bytes ...Writing 1379354496 bytes into STARindex//SA_15 ; empty space on disk = 7184921875054592 bytes ... done
+Writing 1328793536 bytes into STARindex//SA_20 ; empty space on disk = 11092771982082048 bytes ... done
+Writing 1415852720 bytes into STARindex//SA_23 ; empty space on disk = 11092601276399616 bytes ... done
+Writing 1495811408 bytes into STARindex//SA_21 ; empty space on disk = 11092463135031296 bytes ... done
+Writing 1538674208 bytes into STARindex//SA_22 ; empty space on disk = 11092357696258048 bytes ... done
+Writing 1560434640 bytes into STARindex//SA_24 ; empty space on disk = 11091521324777472 bytes ... done
+Writing 1230408992 bytes into STARindex//SA_28 ; empty space on disk = 11091312163094528 bytes ...Writing 1236537808 bytes into STARindex//SA_26 ; empty space on disk = 11091312163094528 bytes ... done
  done
-Writing 1379354413969676721482054520 bytes into A_13ty space on  ; empty space on disk = ytes ...strandBi ; empty space on disk = 7184924912844800 bytes ...844800 bytes ...Writing 1379354413969676721482054520 bytes into A_13ty space on  ; empty space on disk = ytes ...strandBi ; empty space on disk = 7184924912844800 bytes ...844800 bytes ... done
+Writing 1363568752 bytes into STARindex//SA_29 ; empty space on disk = 11091228800909312 bytes ... done
+Writing 1535279056 bytes into STARindex//SA_25 ; empty space on disk = 11091228800909312 bytes ...Writing 1547725408 bytes into STARindex//SA_27 ; empty space on disk = 11091178335043584 bytes ... done
  done
-Writing 1467544184 bytes into STARindex//SA_14 ; empty space on disk = 7184916913324032 bytes ... done
-Writing 1558337344 bytes into STARindex//SA_16 ; empty space on disk = 7184880084123648 bytes ... done
-Writing 1376509760 bytes into STARindex//SA_17 ; empty space on disk = 7184868127932416 bytes ... done
-Writing 1520120488 bytes into STARindex//SA_19 ; empty space on disk = 7184888839143424 bytes ... done
-Writing 1542116104 bytes into STARindex//SA_18 ; empty space on disk = 7184878839988224 bytes ...Writing 1542116104 bytes into STARindex//SA_18 ; empty space on disk = 7184878839988224 bytes ...Writing 1328793536 bytes into STARindex//SA_20 ; empty space on disk = 7184878839988224 bytes ... done
- done
-Writing 1495811408 bytes into STARindex//SA_21 ; empty space on disk = 7184891476246528 bytes ...Writing 1415852720 bytes into STARindex//SA_23 ; empty space on disk = 7184891476246528 bytes ... done
- done
-Writing 1538674208 bytes into STARindex//SA_22 ; empty space on disk = 7184870377390080 bytes ... done
-Writing 1560434640 bytes into STARindex//SA_24 ; empty space on disk = 7184915298779136 bytes ... done
-Writing 1535279056 bytes into STARindex//SA_25 ; empty space on disk = 7184873356591104 bytes ... done
-Writing 1230408992 bytes into STARindex//SA_28 ; empty space on disk = 7184835768877056 bytes ... done
-Writing 1236537808 bytes into STARindex//SA_26 ; empty space on disk = 7184839443939328 bytes ... done
-Writing 1547725408 bytes into STARindex//SA_27 ; empty space on disk = 7184832689668096 bytes ... done
-Writing 1354123712 bytes into STARindex//SA_31 ; empty space on disk = 7184850448482304 bytes ...Writing 1363568752 bytes into STARindex//SA_29 ; empty space on disk = 7184850448482304 bytes ... done
- done
-Writing 1445311400 bytes into STARindex//SA_30 ; empty space on disk = 7184837673549824 bytes ... done
-Writing 1348720496 bytes into STARindex//SA_32 ; empty space on disk = 7184818245337088 bytes ... done
-Writing 1491004448 bytes into STARindex//SA_33 ; empty space on disk = 7184827500724224 bytes ... done
-Writing 1193731344 bytes into STARindex//SA_36 ; empty space on disk = 7184822752772096 bytes ...1319122960 bytes into STARindex//SA_34 ; empty space on disk = 7184822752772096 bytes ...Writing 1194006656 bytes into STARindex//SA_35 ; empty space on disk = 7184822752772096 bytes ... done
- done
- done
-Writing 1322626160 bytes into STARindex//SA_37 ; empty space on disk = 7184778300096512 bytes ... done
-Writing 1317262928 bytes into STARindex//SA_38 ; empty space on disk = 7184796877127680 bytes ...Writing 1290333808 bytes into STARindex//SA_39 ; empty space on disk = 7184796877127680 bytes ... done
- done
-Oct 23 01:17:17 ... loading chunks from disk, packing SA...
-Oct 23 01:20:30 ... finished generating suffix array
-Oct 23 01:20:30 ... generating Suffix Array index
-Oct 23 01:24:21 ... completed Suffix Array index
-Oct 23 01:24:22   Finished preparing junctions
-Oct 23 01:24:22 ..... inserting junctions into the genome indices
-Oct 23 01:25:22   Finished SA search: number of new junctions=220315, old junctions=0
-Oct 23 01:25:44   Finished sorting SA indicesL nInd=87206116
+Writing 1354123712 bytes into STARindex//SA_31 ; empty space on disk = 11091149177815040 bytes ... done
+Writing 1445311400 bytes into STARindex//SA_30 ; empty space on disk = 11091143003930624 bytes ... done
+Writing 1348720496 bytes into STARindex//SA_32 ; empty space on disk = 11091301230641152 bytes ... done
+Writing 1194006656 bytes into STARindex//SA_35 ; empty space on disk = 11091294899732480 bytes ... done
+Writing 1193731344 bytes into STARindex//SA_36 ; empty space on disk = 11091322817019904 bytes ... done
+Writing 1322626160 bytes into STARindex//SA_37 ; empty space on disk = 11091320174280704 bytes ... done
+Writing 1319122960 bytes into STARindex//SA_34 ; empty space on disk = 11091392992772096 bytes ... done
+Writing 1317262928 bytes into STARindex//SA_38 ; empty space on disk = 11091380783677440 bytes ... done
+Writing 1290333808 bytes into STARindex//SA_39 ; empty space on disk = 11091380783677440 bytes ... done
+Writing 1491004448 bytes into STARindex//SA_33 ; empty space on disk = 11091395982852096 bytes ... done
+Jan 19 21:13:25 ... loading chunks from disk, packing SA...
+Jan 19 21:16:50 ... finished generating suffix array
+Jan 19 21:16:50 ... generating Suffix Array index
+Jan 19 21:20:06 ... completed Suffix Array index
+Jan 19 21:20:07   Finished preparing junctions
+Jan 19 21:20:07 ..... inserting junctions into the genome indices
+Jan 19 21:20:58   Finished SA search: number of new junctions=220315, old junctions=0
+Jan 19 21:21:18   Finished sorting SA indicesL nInd=87206116
 Genome size with junctions=4918672509  4874829824   43842685
 GstrandBit1=33   GstrandBit=33
-Oct 23 01:27:03   Finished inserting junction indices
-Oct 23 01:27:19   Finished SAi
-Oct 23 01:27:19 ..... finished inserting junctions into genome
-Oct 23 01:27:19 ... writing Genome to disk ...
-Writing 4918672509 bytes into STARindex//Genome ; empty space on disk = 7184938278191104 bytes ... done
+Jan 19 21:22:31   Finished inserting junction indices
+Jan 19 21:22:45   Finished SAi
+Jan 19 21:22:45 ..... finished inserting junctions into genome
+Jan 19 21:22:45 ... writing Genome to disk ...
+Writing 4918672509 bytes into STARindex//Genome ; empty space on disk = 11091166638374912 bytes ... done
 SA size in bytes: 30134738538
-Oct 23 01:28:05 ... writing Suffix Array to disk ...
-Writing 30134738538 bytes into STARindex//SA ; empty space on disk = 7184933938003968 bytes ... done
-Oct 23 01:32:34 ... writing SAindex to disk
-Writing 8 bytes into STARindex//SAindex ; empty space on disk = 7184825606078464 bytes ... done
-Writing 120 bytes into STARindex//SAindex ; empty space on disk = 7184825606078464 bytes ... done
-Writing 1610612733 bytes into STARindex//SAindex ; empty space on disk = 7184825606078464 bytes ... done
-Oct 23 01:32:52 ..... finished successfully
+Jan 19 21:22:55 ... writing Suffix Array to disk ...
+Writing 30134738538 bytes into STARindex//SA ; empty space on disk = 11091056122527744 bytes ... done
+Jan 19 21:23:44 ... writing SAindex to disk
+Writing 8 bytes into STARindex//SAindex ; empty space on disk = 11090991825027072 bytes ... done
+Writing 120 bytes into STARindex//SAindex ; empty space on disk = 11090991825027072 bytes ... done
+Writing 1610612733 bytes into STARindex//SAindex ; empty space on disk = 11090991825027072 bytes ... done
+Jan 19 21:23:49 ..... finished successfully
 DONE: Genome generation, EXITING
