@@ -404,6 +404,8 @@ process CONVERT_TO_H5AD {
   #!/usr/bin/env python3
   import scanpy as sc
   import os
+  import gzip
+  import shutil
 
   # Find the GeneFull matrix directory
   matrix_dir = None
@@ -423,6 +425,16 @@ process CONVERT_TO_H5AD {
 
   if matrix_dir is None:
     raise FileNotFoundError(f"No STARsolo matrix found in ${solo_dir}")
+
+  # Gzip matrix files if needed (STARsolo outputs uncompressed, scanpy expects .gz)
+  for fname in ['matrix.mtx', 'features.tsv', 'barcodes.tsv']:
+    src = os.path.join(matrix_dir, fname)
+    dst = os.path.join(matrix_dir, fname + '.gz')
+    if os.path.exists(src) and not os.path.exists(dst):
+      print(f"Compressing {src}...")
+      with open(src, 'rb') as f_in:
+        with gzip.open(dst, 'wb') as f_out:
+          shutil.copyfileobj(f_in, f_out)
 
   # Read the matrix
   adata = sc.read_10x_mtx(matrix_dir, var_names='gene_ids', cache=False)
