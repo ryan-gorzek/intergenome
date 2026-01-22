@@ -513,95 +513,79 @@ process CALC_DISTANCES {
     tuple val(sample), path("${sample}_nearest.parquet"), emit: parquet
 
   script:
+  // Memory-efficient: use shell tools for heavy lifting, then convert to parquet
   """
-  #!/usr/bin/env python3
-  import pandas as pd
-  import subprocess
-  import tempfile
-  import os
+  set -euo pipefail
 
-  sample = '${sample}'
-  intergenic_bed = '${intergenic_bed}'
-  genes_5p = '${genes_5p_bed}'
-  genes_3p = '${genes_3p_bed}'
+  # Decompress if needed
+  if [[ "${intergenic_bed}" == *.gz ]]; then
+    zcat "${intergenic_bed}" > intergenic.bed
+  else
+    cp "${intergenic_bed}" intergenic.bed
+  fi
 
-  # Decompress intergenic bed if needed (use zcat for compatibility with older gzip)
-  if intergenic_bed.endswith('.gz'):
-    decompressed = intergenic_bed[:-3]
-    subprocess.run(f'zcat {intergenic_bed} > {decompressed}', shell=True, check=True)
-    intergenic_bed = decompressed
+  # Sort
+  LC_COLLATE=C sort -k1,1 -k2,2n -k3,3n intergenic.bed -o intergenic.sorted.bed
 
-  # Sort the intergenic bed file
-  sorted_bed = intergenic_bed + '.sorted'
-  subprocess.run(f'LC_COLLATE=C sort -k1,1 -k2,2n -k3,3n {intergenic_bed} -o {sorted_bed}', shell=True, check=True)
+  # Find closest 5' and 3' endpoints
+  bedtools closest -sorted -a intergenic.sorted.bed -b "${genes_5p_bed}" -d > closest_5p.txt
+  bedtools closest -sorted -a intergenic.sorted.bed -b "${genes_3p_bed}" -d > closest_3p.txt
 
-  # Find closest 5' and 3' gene endpoints
-  with tempfile.NamedTemporaryFile(mode='w', suffix='.5p.txt', delete=False) as tmp5:
-    tmp5_path = tmp5.name
-  with tempfile.NamedTemporaryFile(mode='w', suffix='.3p.txt', delete=False) as tmp3:
-    tmp3_path = tmp3.name
+  # Combine with paste and process with awk (memory-efficient streaming)
+  # Input: 13 cols from 5p (6 read + 6 gene + 1 dist), 13 cols from 3p
+  # Output: chrom, start, end, read_name, strand, gene_id, gene_class, region, signed_distance, sample
+  paste closest_5p.txt closest_3p.txt | awk -F'\\t' -v sample="${sample}" '
+    BEGIN { OFS = "\\t" }
+    {
+      # Read info (cols 1-6 from 5p file)
+      chrom = \$1; start = \$2; end = \$3; read_name = \$4; score = \$5; strand = \$6
+      # 5p gene info (cols 7-13)
+      label_5p = \$10; dist_5p = \$13
+      # 3p gene info (cols 14-26, offset by 13)
+      label_3p = \$23; dist_3p = \$26
 
-  subprocess.run(f'bedtools closest -sorted -a {sorted_bed} -b {genes_5p} -d > {tmp5_path}', shell=True, check=True)
-  subprocess.run(f'bedtools closest -sorted -a {sorted_bed} -b {genes_3p} -d > {tmp3_path}', shell=True, check=True)
+      # Skip if no nearby gene found (distance = -1)
+      if (dist_5p == -1 && dist_3p == -1) next
 
-  # Read results
-  cols_read = ['chrom', 'start', 'end', 'read_name', 'score', 'strand']
-  cols_gene = ['g_chrom', 'g_start', 'g_end', 'g_label', 'g_score', 'g_strand', 'distance']
+      # Pick nearer endpoint (ties go to 5p)
+      if (dist_5p <= dist_3p || dist_3p == -1) {
+        region = "5p"
+        gene_label = label_5p
+        signed_dist = -dist_5p  # negative for 5p
+      } else {
+        region = "3p"
+        gene_label = label_3p
+        signed_dist = dist_3p   # positive for 3p
+      }
 
-  df5 = pd.read_csv(tmp5_path, sep='\\t', header=None, names=cols_read + cols_gene)
-  df3 = pd.read_csv(tmp3_path, sep='\\t', header=None, names=cols_read + cols_gene)
+      # Parse gene label: gene_id|biotype|3UTR_status
+      split(gene_label, parts, "|")
+      gene_id = parts[1]
+      biotype = parts[2]
+      utr_status = parts[3]
+      gene_class = biotype "_" utr_status
 
-  # Clean up temp files
-  os.unlink(tmp5_path)
-  os.unlink(tmp3_path)
-  os.unlink(sorted_bed)
+      # Filter to relevant gene classes
+      if (gene_class != "protein_coding_3UTR" && gene_class != "protein_coding_no3UTR" &&
+          gene_class != "lncRNA_3UTR" && gene_class != "lncRNA_no3UTR") next
 
-  # Combine: pick nearer endpoint (ties go to 5')
-  df5['region'] = '5p'
-  df3['region'] = '3p'
+      print chrom, start, end, read_name, strand, gene_id, gene_class, region, signed_dist, sample
+    }
+  ' > distances.tsv
 
-  # Merge on read coordinates
-  df = df5[['chrom', 'start', 'end', 'read_name', 'strand']].copy()
-  df['dist_5p'] = df5['distance']
-  df['dist_3p'] = df3['distance']
-  df['label_5p'] = df5['g_label']
-  df['label_3p'] = df3['g_label']
+  # Convert TSV to parquet (now much smaller after filtering)
+  python3 << 'PYEOF'
+import pandas as pd
 
-  # Choose nearer endpoint
-  df['region'] = 'NA'
-  df['distance'] = -1
-  df['gene_label'] = 'NA'
+df = pd.read_csv('distances.tsv', sep='\\t', header=None,
+                 names=['chrom', 'start', 'end', 'read_name', 'strand',
+                        'gene_id', 'gene_class', 'region', 'signed_distance', 'sample'])
+df.to_parquet('${sample}_nearest.parquet', index=False)
+print(f"Wrote {len(df)} distance records to ${sample}_nearest.parquet")
+PYEOF
 
-  mask_5p = df['dist_5p'] <= df['dist_3p']
-  df.loc[mask_5p, 'region'] = '5p'
-  df.loc[mask_5p, 'distance'] = df.loc[mask_5p, 'dist_5p']
-  df.loc[mask_5p, 'gene_label'] = df.loc[mask_5p, 'label_5p']
-
-  df.loc[~mask_5p, 'region'] = '3p'
-  df.loc[~mask_5p, 'distance'] = df.loc[~mask_5p, 'dist_3p']
-  df.loc[~mask_5p, 'gene_label'] = df.loc[~mask_5p, 'label_3p']
-
-  # Apply signed distance convention: negative for 5' (upstream), positive for 3' (downstream)
-  df['signed_distance'] = df.apply(
-    lambda row: -row['distance'] if row['region'] == '5p' else row['distance'],
-    axis=1
-  )
-
-  # Parse gene label: gene_id|biotype|3UTR_status
-  df[['gene_id', 'biotype', 'utr_status']] = df['gene_label'].str.split('|', expand=True)
-  df['gene_class'] = df['biotype'] + '_' + df['utr_status']
-
-  # Filter to relevant gene classes
-  keep_classes = ['protein_coding_3UTR', 'protein_coding_no3UTR', 'lncRNA_3UTR', 'lncRNA_no3UTR']
-  df = df[df['gene_class'].isin(keep_classes)]
-
-  # Select output columns
-  out_df = df[['chrom', 'start', 'end', 'read_name', 'strand', 'gene_id', 'gene_class', 'region', 'signed_distance']].copy()
-  out_df['sample'] = sample
-
-  # Write to parquet
-  out_df.to_parquet(f'{sample}_nearest.parquet', index=False)
-  print(f"Wrote {len(out_df)} distance records to {sample}_nearest.parquet")
+  # Cleanup
+  rm -f intergenic.bed intergenic.sorted.bed closest_5p.txt closest_3p.txt distances.tsv
   """
 }
 
