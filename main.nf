@@ -525,10 +525,11 @@ process CALC_DISTANCES {
   genes_5p = '${genes_5p_bed}'
   genes_3p = '${genes_3p_bed}'
 
-  # Decompress intergenic bed if needed
+  # Decompress intergenic bed if needed (use zcat for compatibility with older gzip)
   if intergenic_bed.endswith('.gz'):
-    subprocess.run(['gunzip', '-k', intergenic_bed], check=True)
-    intergenic_bed = intergenic_bed[:-3]
+    decompressed = intergenic_bed[:-3]
+    subprocess.run(f'zcat {intergenic_bed} > {decompressed}', shell=True, check=True)
+    intergenic_bed = decompressed
 
   # Sort the intergenic bed file
   sorted_bed = intergenic_bed + '.sorted'
